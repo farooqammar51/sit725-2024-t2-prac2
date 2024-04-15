@@ -1,0 +1,9 @@
+version: '3'
+services:
+  server:
+    container_name: server
+    image: ammar/2.1p:01
+    build: 
+      dockerfile: Dockerfile
+    ports:
+      - 5000:3000
