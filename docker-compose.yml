@@ -1,9 +1,14 @@
-version: '3'
+version: "3"
 services:
   server:
     container_name: server
-    image: ammar/2.1p:01
-    build: 
-      dockerfile: Dockerfile
+    build: .
     ports:
       - 5000:3000
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3000/health-check || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+  

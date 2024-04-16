@@ -223,6 +223,11 @@ app.post("/reset", (req, res) => {
   res.render("home", { num1, num2, error, result, disableInput });
 });
 
+//endpoint to simulate container health check failure
+app.get("/health-check", (req, res) => {
+  res.status(500).json("Health check failed!");
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
