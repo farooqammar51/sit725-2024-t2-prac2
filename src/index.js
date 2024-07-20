@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 var error;
+var info;
 var result;
 var num1;
 var num2;
@@ -23,21 +24,23 @@ app.get("/", (req, res) => {
 });
 
 app.post("/add", (req, res) => {
+  info = "Add operation";
   num1 = parseFloat(req.body.num1);
   num2 = parseFloat(req.body.num2);
 
   if (isNaN(num1) || isNaN(num2)) {
     num1 = 0;
     num2 = 0;
-    error = "Invalid input. Please provide + values.";
+    error = "Invalid input. Please provide values.";
     return res.render("home", { error, num1, num2 });
   }
 
   result = num1 + num2;
-  res.render("home", { num1, num2, result });
+  res.render("home", { num1, num2, result, info });
 });
 
 app.post("/subtract", (req, res) => {
+  info = "Subtract operation";
   num1 = parseFloat(req.body.num1);
   num2 = parseFloat(req.body.num2);
 
@@ -49,10 +52,11 @@ app.post("/subtract", (req, res) => {
   }
 
   result = num1 - num2;
-  res.render("home", { num1, num2, result });
+  res.render("home", { num1, num2, result, info });
 });
 
 app.post("/multiply", (req, res) => {
+  info = "Multiplication operation";
   num1 = parseFloat(req.body.num1);
   num2 = parseFloat(req.body.num2);
 
@@ -64,10 +68,11 @@ app.post("/multiply", (req, res) => {
   }
 
   result = num1 * num2;
-  res.render("home", { num1, num2, result });
+  res.render("home", { num1, num2, result, info });
 });
 
 app.post("/divide", (req, res) => {
+  info = "Division operation";
   num1 = parseFloat(req.body.num1);
   num2 = parseFloat(req.body.num2);
 
@@ -86,10 +91,11 @@ app.post("/divide", (req, res) => {
   }
 
   result = num1 / num2;
-  res.render("home", { num1, num2, result });
+  res.render("home", { num1, num2, result, info });
 });
 
 app.post("/exponentiate", (req, res) => {
+  info = "Exponential operation";
   num1 = parseFloat(req.body.num1);
   num2 = parseFloat(req.body.num2);
 
@@ -101,7 +107,7 @@ app.post("/exponentiate", (req, res) => {
   }
 
   result = Math.pow(num1, num2);
-  res.render("home", { num1, num2, result });
+  res.render("home", { num1, num2, result, info });
 });
 
 app.post("/reset", (req, res) => {
